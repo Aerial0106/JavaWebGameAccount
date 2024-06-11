@@ -23,5 +23,3 @@ public @interface ValidUsername {
 
     Class<? extends Payload>[] payload() default {};
 }
-
-
