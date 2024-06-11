@@ -1,4 +1,5 @@
 package JavaWeb.GameAccount.validators.annotations;
+
 import java.lang.annotation.Target;
 
 import JavaWeb.GameAccount.validators.ValidUsernameValidator;
