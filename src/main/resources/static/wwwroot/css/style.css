@@ -164,11 +164,11 @@ ol {
 	padding: 6px 25px;
 }
 
-.cata.new {
+.cata.fps-strategy {
 	background: #ff205f;
 }
 
-.cata.strategy {
+.cata.battle-royal {
 	background: #4eae60;
 }
 
@@ -178,6 +178,10 @@ ol {
 
 .cata.adventure {
 	background: #40abf5;
+}
+
+.cata.moba {
+	background: #FFD700;
 }
 
 /* Preloder */
@@ -455,16 +459,20 @@ ol {
 	padding: 4px 20px;
 }
 
-.news-ticker-contant .nt-item span.new {
+.news-ticker-contant .nt-item span.fps-strategy {
 	background: #ff205f;
 }
 
-.news-ticker-contant .nt-item span.strategy {
+.news-ticker-contant .nt-item span.battle-royal {
 	background: #4eae60;
 }
 
 .news-ticker-contant .nt-item span.racing {
 	background: #694eae;
+}
+
+.news-ticker-contant .nt-item span.moba {
+	background: #FFD700;
 }
 
 /*------------------

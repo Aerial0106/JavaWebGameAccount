@@ -431,14 +431,17 @@ ol {
       font-weight: 500;
       color: #fff;
       padding: 4px 20px;
-      &.new {
+      &.FPS-strategy {
         background: #ff205f;
       }
-      &.strategy {
+      &.battle-royal {
         background: #4eae60;
       }
       &.racing {
         background: #694eae;
+      }
+      &.moba {
+        background: #FFD700;
       }
     }
     display: inline-block;
