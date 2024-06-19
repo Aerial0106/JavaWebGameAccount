@@ -56,10 +56,10 @@ $(window).on('load', function() {
 		var index = $(this).index() + 1;
 		if(index < 10){
 			$(this).html('0').append(index);
-			$(this).append('<span>.</span>');
+			$(this).append('<span></span>');
 		}else{
 			$(this).html(index);
-			$(this).append('<span>.</span>');
+			$(this).append('<span></span>');
 		}
 	});
 
