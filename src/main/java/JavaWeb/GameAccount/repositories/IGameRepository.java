@@ -1,3 +1,4 @@
+/*
 package JavaWeb.GameAccount.repositories;
 
 import JavaWeb.GameAccount.entities.Game;
@@ -8,3 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface IGameRepository extends
         JpaRepository<Game, Long> {
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package JavaWeb.GameAccount.entities;
 
 import jakarta.persistence.*;
@@ -36,3 +37,4 @@ public class Game {
 
 }
 
+*/

@@ -1,5 +1,6 @@
 package JavaWeb.GameAccount.entities;
 
+import JavaWeb.GameAccount.model.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

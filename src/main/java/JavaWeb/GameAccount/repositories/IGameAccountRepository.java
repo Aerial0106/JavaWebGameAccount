@@ -1,3 +1,4 @@
+/*
 package JavaWeb.GameAccount.repositories;
 
 import JavaWeb.GameAccount.entities.GameAccount;
@@ -27,3 +28,4 @@ public interface IGameAccountRepository extends JpaRepository<GameAccount, Long>
     List<GameAccount> searchGameAccount(String keyword);
 }
 
+*/

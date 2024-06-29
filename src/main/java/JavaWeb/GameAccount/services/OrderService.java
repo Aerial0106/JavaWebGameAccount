@@ -1,8 +1,8 @@
 package JavaWeb.GameAccount.services;
 
 import JavaWeb.GameAccount.model.CartItem;
-import JavaWeb.GameAccount.model.Order;
-import JavaWeb.GameAccount.model.OrderDetail;
+import JavaWeb.GameAccount.entities.Order;
+import JavaWeb.GameAccount.entities.OrderDetail;
 import JavaWeb.GameAccount.model.Product;
 import JavaWeb.GameAccount.repositories.IOrderDetailRepository;
 import JavaWeb.GameAccount.repositories.IOrderRepository;
@@ -25,8 +25,6 @@ public class OrderService {
     private CartItemService cartItemService; // Assuming you have a CartService
     @Autowired
     private ProductService productService;
-    @Autowired
-    private Product product;
 
     @Transactional
     public Order createOrder(String customerName, String Email, long phone, String address, String note, List<CartItem> cartItems)
@@ -47,9 +45,6 @@ public class OrderService {
 //            }
 //            else
 //            {
-            product = item.getProduct();
-            product.setNums(product.getNums() - item.getQuantity());
-            productService.updateProduct(product);
             OrderDetail detail = new OrderDetail();
             detail.setOrder(order);
             detail.setProduct(item.getProduct());
