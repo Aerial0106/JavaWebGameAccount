@@ -39,4 +39,7 @@ public class Product {
 
     @Column(name = "`ORDER`", nullable = false)
     private int order;
+
+    @Column(name = "HIDE", nullable = false)
+    private boolean hide;
 }

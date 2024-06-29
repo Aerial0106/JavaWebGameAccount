@@ -47,7 +47,7 @@ public class CategoryController {
 
     }
     @GetMapping("/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
         Category category = categoryService.getCategoryById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid categoryId:" + id));
         model.addAttribute("category", category);
@@ -69,7 +69,7 @@ public class CategoryController {
 
     // GET request for deleting category
     @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable("id") Long id, Model model) {
+    public String deleteCategory(@PathVariable("id") int id, Model model) {
         Category category = categoryService.getCategoryById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid categoryId:" + id));
 
