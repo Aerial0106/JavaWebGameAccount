@@ -16,7 +16,7 @@ public class CartItemService {
     private List<CartItem> cartItems = new ArrayList<>();
     @Autowired
     private IProductRepository productRepository;
-    public void addToCart(long productId, int quantity) {
+    public void addToCart(int productId, int quantity) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalArgumentException("Product not found: " + productId));
         cartItems.add(new CartItem(product, quantity));
     }
