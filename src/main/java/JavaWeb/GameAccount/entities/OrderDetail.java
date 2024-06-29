@@ -1,5 +1,6 @@
-package JavaWeb.GameAccount.model;
+package JavaWeb.GameAccount.entities;
 
+import JavaWeb.GameAccount.model.Product;
 import jakarta.persistence.*;
 import lombok.*;
 

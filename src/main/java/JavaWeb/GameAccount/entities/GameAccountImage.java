@@ -1,9 +1,7 @@
+/*
 package JavaWeb.GameAccount.entities;
 import jakarta.persistence.*;
 import lombok.*;
-
-
-
 
 @Getter
 @Setter
@@ -26,3 +24,4 @@ public class GameAccountImage {
     @ToString.Exclude
     private GameAccount gameAccount;
 }
+*/
