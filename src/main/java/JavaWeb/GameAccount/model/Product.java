@@ -37,6 +37,9 @@ public class Product {
     @Column(name = "IMG3")
     private String img3;
 
+    @Column(name = "LINK")
+    private String link;
+
     @Column(name = "`ORDER`", nullable = false)
     private int order;
 

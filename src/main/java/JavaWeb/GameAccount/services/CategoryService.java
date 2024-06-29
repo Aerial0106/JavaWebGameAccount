@@ -1,7 +1,7 @@
 package JavaWeb.GameAccount.services;
 
 import JavaWeb.GameAccount.model.Category;
-import JavaWeb.GameAccount.repositories.ICategoryRepository;
+import JavaWeb.GameAccount.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

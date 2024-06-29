@@ -1,24 +1,30 @@
 package JavaWeb.GameAccount.controllers;
-import JavaWeb.GameAccount.services.ProductService;
-import JavaWeb.GameAccount.model.Product;
+
+import JavaWeb.GameAccount.services.*;
+import JavaWeb.GameAccount.model.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
-import JavaWeb.GameAccount.services.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import java.util.Map;
+import java.util.Optional;
 @Controller
 @RequestMapping("/products")
-
+@Slf4j
+@RequiredArgsConstructor
 public class ProductController {
     @Autowired
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    private final MenuService menuService;
     @GetMapping
     public String showProductList(Model model) {
         model.addAttribute("products", productService.getAllProducts());
@@ -66,5 +72,24 @@ public class ProductController {
     public String deleteProduct(@PathVariable int id) {
         productService.deleteProductById(id);
         return "redirect:/products";
+    }
+    @GetMapping("/{category}")
+    public String ProductCategory(Model model, @PathVariable String category,
+                                  @RequestParam(name = "page", defaultValue = "0") int page) {
+        Category cat = categoryService.findByLink(category);
+        if (cat == null) {
+            return "error"; // Xử lý khi không tìm thấy danh mục
+        }
+        int categoryId = cat.getId();
+        List<Product> productsForCategory =
+                productService.getProductsByCategoryId(categoryId);
+        model.addAttribute("categoryName", cat.getName());
+        model.addAttribute("productsForCategory", productsForCategory);
+        addCommonAttributes(model);
+        return "products/product";
+    }
+    private void addCommonAttributes(Model model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("menus", menuService.findAllMenu());
     }
 }

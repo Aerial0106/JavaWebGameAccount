@@ -20,6 +20,8 @@ public class Category {
     @Column(name = "`ORDER`", nullable = false)
     private int order;
 
+    @Column(name = "LINK")
+    private String link;
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products;

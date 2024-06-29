@@ -79,4 +79,8 @@ public class ProductService {
         });
         return productsByCategory;
     }
+    public List<Product> getProductsByCategoryId(int categoryId) {
+        return
+                productRepository.findByCategoryIdAndHideTrueOrderByOrderAsc(categoryId);
+    }
 }
