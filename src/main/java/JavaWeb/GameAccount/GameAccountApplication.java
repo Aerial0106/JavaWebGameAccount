@@ -9,5 +9,4 @@ public class GameAccountApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GameAccountApplication.class, args);
 	}
-
 }

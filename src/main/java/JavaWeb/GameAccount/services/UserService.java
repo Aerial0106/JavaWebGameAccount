@@ -17,7 +17,6 @@ import java.util.Optional;
 @Service
 @Slf4j
 @Transactional
-
 public class UserService implements UserDetailsService {
     @Autowired
     private IUserRepository userRepository;
@@ -56,9 +55,24 @@ public class UserService implements UserDetailsService {
                 .disabled(!user.isEnabled())
                 .build();
     }
+
     // Tìm kiếm người dùng dựa trên tên đăng nhập.
-    public Optional<User> findByUsername(String username) throws
-            UsernameNotFoundException {
+    public Optional<User> findByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
+    }
+
+    // Kiểm tra sự tồn tại của username.
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    // Kiểm tra sự tồn tại của email.
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    // Kiểm tra sự tồn tại của phone.
+    public boolean existsByPhone(String phone) {
+        return userRepository.existsByPhone(phone);
     }
 }
