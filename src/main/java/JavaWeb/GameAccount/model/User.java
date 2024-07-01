@@ -1,9 +1,8 @@
 package JavaWeb.GameAccount.model;
 
-import JavaWeb.GameAccount.entities.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,9 +13,14 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +34,8 @@ public class User implements UserDetails{
     @NotBlank(message = "Password is required")
     private String password;
 
+    @Column(name = "fullname")
+    private String fullname;
     @Column(name = "email", length = 50, unique = true)
     @NotBlank(message = "Email is required")
     @Size(min = 1, max = 50, message = "Email must be between 1 and 50 characters")
@@ -40,6 +46,10 @@ public class User implements UserDetails{
     @Length(min = 10, max = 10, message = "Phone must be 10 characters")
     @Pattern(regexp = "^[0-9]*$", message = "Phone must be number")
     private String phone;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Set<Order> orders = new HashSet<>();
 
     @Column(name = "provider", length = 50)
     private String provider;

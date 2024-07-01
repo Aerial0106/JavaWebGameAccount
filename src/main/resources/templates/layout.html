@@ -14,11 +14,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" th:href="@{static/wwwroot/css/bootstrap.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{static/wwwroot/css/font-awesome.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{static/wwwroot/css/owl.carousel.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{static/wwwroot/css/style.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{static/wwwroot/css/animate.css}" type="text/css"/>
+    <link th:fragment="link-css" rel="stylesheet"
+          th:href="@{/wwwroot/css/bootstrap.min.css}">
+    <link th:fragment="custom-css" rel="stylesheet"
+          th:href="@{/wwwroot/css/style.css}">
+    <link rel="stylesheet" th:href="@{/wwwroot/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/wwwroot/css/owl.carousel.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/wwwroot/css/animate.css}" type="text/css"/>
 
 
 
@@ -403,10 +405,10 @@
 <!-- Footer section end -->
 
 <!--====== Javascripts & Jquery ======-->
-<script th:src="@{static/wwwroot/js/jquery-3.2.1.min.js}"></script>
-<script th:src="@{static/wwwroot/js/bootstrap.min.js}"></script>
-<script th:src="@{static/wwwroot/js/owl.carousel.min.js}"></script>
-<script th:src="@{static/wwwroot/js/jquery.marquee.min.js}"></script>
-<script th:src="@{static/wwwroot/js/main.js}"></script>
+<script th:src="@{/wwwroot/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/wwwroot/js/bootstrap.min.js}"></script>
+<script th:src="@{/wwwroot/js/owl.carousel.min.js}"></script>
+<script th:src="@{/wwwroot/js/jquery.marquee.min.js}"></script>
+<script th:src="@{/wwwroot/js/main.js}"></script>
 </body>
 </html>

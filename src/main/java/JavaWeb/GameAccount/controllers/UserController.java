@@ -32,7 +32,7 @@ public class UserController {
     @GetMapping("/register")
     public String register(@NotNull Model model) {
         model.addAttribute("user", new User()); // Thêm một đối tượng User mới vào model
-        return "users/register";
+        return "user/register";
     }
 
 
@@ -60,7 +60,7 @@ public class UserController {
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .toArray(String[]::new);
             model.addAttribute("errors", errors);
-            return "users/register"; // Trả về lại view "register" nếu có lỗi
+            return "user/register"; // Trả về lại view "register" nếu có lỗi
         }
         userService.save(user); // Lưu người dùng vào cơ sở dữ liệu
         userService.setDefaultRole(user.getUsername()); // Gán vai trò mặc định cho người dùng

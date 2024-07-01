@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Form Thêm Category</title>
+    <th:block th:replace="~{layout :: link-css}"></th:block>
+    <th:block th:replace="~{layout::custom-css}"></th:block> </head>
+<body>
+<section layout:fragment="content" class="container mt-5">
+    <h1 class="mb-4">Form Category</h1>
+    <form th:action="@{/categories/add}" th:object="${category}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Category Name:</label>  <input type="text" id="name" th:field="*{name}" class="form-control"/>
+            <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+        <label for="order" class="form-label">Order:</label>
+        <input type="number" id="order" th:field="*{order}" class="form control"/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>
+<script th:src="@{wwwroot/js/bootstrap.min.js}"></script>
+</body>
+</html>
