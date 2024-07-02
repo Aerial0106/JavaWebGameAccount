@@ -31,5 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-src/main/resources/templates/layout.html
-src/main/resources/templates/403.html
