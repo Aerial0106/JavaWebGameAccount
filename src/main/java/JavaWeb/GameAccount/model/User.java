@@ -1,9 +1,9 @@
 package JavaWeb.GameAccount.model;
 
-import JavaWeb.GameAccount.entities.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,6 +43,11 @@ public class User implements UserDetails{
 
     @Column(name = "provider", length = 50)
     private String provider;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Set<Order> orders = new HashSet<>();
+    @Column(name = "fullname")
+    private String fullname;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",

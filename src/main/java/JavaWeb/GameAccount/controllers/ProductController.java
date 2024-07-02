@@ -28,7 +28,7 @@ public class ProductController {
     @GetMapping
     public String showProductList(Model model) {
         model.addAttribute("products", productService.getAllProducts());
-        return "/products/product-list";
+        return "products/product-list";
     }
 
     // For adding a new product
@@ -36,13 +36,13 @@ public class ProductController {
     public String showAddForm(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("categories", categoryService.getAllCategories());
-        return "/products/add-product";
+        return "products/add-product";
     }
     // Process the form for adding a new product
     @PostMapping("/add")
     public String addProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
-            return "/products/add-product";
+            return "products/add-product";
         }
         productService.addProduct(product);
         return "redirect:/products";
@@ -54,7 +54,7 @@ public class ProductController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid productId:" + id));
         model.addAttribute("product", product);
         model.addAttribute("categories", categoryService.getAllCategories());
-        return "/products/update-product";
+        return "products/update-product";
     }
 
     @PostMapping("/update/{id}")

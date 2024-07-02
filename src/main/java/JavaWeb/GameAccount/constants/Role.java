@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum Role {
-    ADMIN(1),
-    USER(2);
+    ADMIN(2),
+    USER(1);
     public final long value;
 }

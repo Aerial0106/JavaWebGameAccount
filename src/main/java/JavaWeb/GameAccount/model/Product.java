@@ -11,7 +11,7 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PRO")
+    @Column(name = "id")
     private int id;
 
     @ManyToOne
