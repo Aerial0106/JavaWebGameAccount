@@ -17,7 +17,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "`order`")
+@Table(name = "order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +37,8 @@ public class Order {
     private User user;
     @Column(name = "note")
     private String note;
+    @Column(name = "address")
+    private String address;
 
     @Override
     public boolean equals(Object o) {
