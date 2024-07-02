@@ -1,47 +1,48 @@
 package JavaWeb.GameAccount.model;
 
-import JavaWeb.GameAccount.validators.annotations.ValidCategoryId;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "product")
+@Table(name = "Product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "ID_PRO")
+    private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ValidCategoryId
-    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "ID_CAT", referencedColumnName = "ID_CAT")
     private Category category;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-    @Column(name = "nums", nullable = false)
+    @Column(name = "NAME_PRO", nullable = false)
+    private String name; @Column(name = "NUMS", nullable = false)
     private int nums;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "PRICE", nullable = false)
     private double price;
 
-    @Column(name = "detail")
+    @Column(name = "DETAIL")
     private String detail;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private List<ProductImages> images = new ArrayList<>();
+    @Column(name = "IMG1")
+    private String img1;
+
+    @Column(name = "IMG2")
+    private String img2;
+
+    @Column(name = "IMG3")
+    private String img3;
+
     @Column(name = "LINK")
     private String link;
 
-    @Column(name = "`order`", nullable = false)
+    @Column(name = "`ORDER`", nullable = false)
     private int order;
 
-    @Column(name = "hide", nullable = false)
+    @Column(name = "HIDE", nullable = false)
     private boolean hide;
 }

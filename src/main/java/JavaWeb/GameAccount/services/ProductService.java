@@ -4,7 +4,6 @@ import JavaWeb.GameAccount.model.*;
 import JavaWeb.GameAccount.repositories.IProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
@@ -16,18 +15,15 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(isolation = Isolation.SERIALIZABLE,
-        rollbackFor = {Exception.class, Throwable.class})
+@Transactional
 public class ProductService {
     private final IProductRepository productRepository;
 
-    public List<Product> getAllProducts(Integer pageNo,
-                                  Integer pageSize,
-                                  String sortBy) {
-        return productRepository.findAllProducts(pageNo, pageSize, sortBy);
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(Long id) {
+    public Optional<Product> getProductById(int id) {
         return productRepository.findById(id);
     }
 
@@ -43,10 +39,11 @@ public class ProductService {
         existingProduct.setNums(product.getNums());
         existingProduct.setDetail(product.getDetail());
         existingProduct.setCategory(product.getCategory());
+        existingProduct.setOrder(product.getOrder());
         return productRepository.save(existingProduct);
     }
 
-    public void deleteProductById(Long id) {
+    public void deleteProductById(int id) {
         if (!productRepository.existsById(id)) {
             throw new IllegalStateException("Product with ID " + id + " does not exist.");
         }
@@ -82,7 +79,7 @@ public class ProductService {
         });
         return productsByCategory;
     }
-    public List<Product> getProductsByCategoryId(Long categoryId) {
+    public List<Product> getProductsByCategoryId(int categoryId) {
         return
                 productRepository.findByCategoryIdAndHideTrueOrderByOrderAsc(categoryId);
     }
