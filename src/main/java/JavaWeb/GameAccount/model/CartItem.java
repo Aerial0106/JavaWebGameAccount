@@ -23,9 +23,11 @@ public class CartItem {
     @JoinColumn(name = "ID_USER") // Add JoinColumn to specify the mapping
     private User user;
 
+
     // Constructors
     public CartItem(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
+
     }
 }

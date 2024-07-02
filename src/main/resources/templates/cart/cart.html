@@ -23,6 +23,7 @@
         <tr th:each="item : ${cartItems}">
             <td th:text="${item.product.name}"></td>
             <td th:text="${item.quantity}"></td>
+
             <td>
                 <a th:href="@{/cart/remove/{productId}(productId=${item.product.id})}"
                    class="btn btn-danger btn-sm">Remove</a>
