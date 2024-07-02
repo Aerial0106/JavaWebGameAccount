@@ -1,7 +1,9 @@
 package JavaWeb.GameAccount.controllers;
 
+import JavaWeb.GameAccount.model.daos.Item;
 import JavaWeb.GameAccount.services.*;
 import JavaWeb.GameAccount.model.*;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
@@ -24,6 +26,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private CartItemService cartService;
     private final MenuService menuService;
     @GetMapping
     public String showProductList(Model model) {
@@ -92,4 +96,17 @@ public class ProductController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("menus", menuService.findAllMenu());
     }
+    @PostMapping("/add-to-cart")
+    public String addToCart(HttpSession session,
+                            @RequestParam int id,
+                            @RequestParam String name,
+                            @RequestParam double price,
+                            @RequestParam(defaultValue = "1") int
+                                    quantity) {
+        var cart = cartService.getCart(session);
+        cart.addItems(new Item(id, name, price, quantity));
+        cartService.updateCart(session, cart);
+        return "redirect:/products";
+    }
+
 }

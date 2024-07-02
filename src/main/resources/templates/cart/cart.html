@@ -9,9 +9,8 @@
 </head>
 <body>
 <section layout:fragment="content" class="container mt-3"><h1>Your Cart</h1>
-    <div th:if="${cartItems.isEmpty()}" class="alert alert-info">Your cart is
-        empty.</div>
-    <table class="table" th:unless="${cartItems.isEmpty()}">
+
+    <table class="table" th:if="${not #lists.isEmpty(cart.cartItems)}">
         <thead class="table-light">
         <tr>
             <th>Product Name</th>
@@ -20,9 +19,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${cartItems}">
+        <tr th:each="item : ${cart.cartItems}">
             <td th:text="${item.product.name}"></td>
-            <td th:text="${item.quantity}"></td>
+            <td>
+                <label>
+                    <input type="number" min="1"
+                           th:value="${item.getQuantity()}"
+                           th:attr="data-id=${item.getProductId()}"
+                           class="form-control quantity">
+                </label>
+            </td>
             <td>
                 <a th:href="@{/cart/remove/{productId}(productId=${item.product.id})}"
                    class="btn btn-danger btn-sm">Remove</a>
@@ -35,6 +41,19 @@
         |
         <a th:href="@{/order/checkout}" class="btn btn-primary mb-3">Check Out</a>
     </div>
+    <div class="container" th:if="${#lists.isEmpty(cart.cartItems)}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <h3 class="mt-5">Your cart is empty</h3>
+                    <p class="lead">Please add some books to your cart</p>
+                    <a class="btn btn-primary" href="/products">Go to list product</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+<script th:src="@{wwwroot/js/cart.js}"></script>
+
 </body>
 </html>

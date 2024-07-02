@@ -21,9 +21,8 @@
             <th>Price</th>
             <th>Image</th>
             <th>Category Name</th>
-            <th>Quantity</th>
+            <th>Add to cart</th>
             <th>Actions</th>
-            <th>Add To Cart</th>
         </tr>
         </thead>
         <tbody>
@@ -38,22 +37,21 @@
                 <img th:src="@{${product.thumnail}}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
             </td>
             <td>
-                <form th:action="@{/cart/add}" method="post">
-                    <input type="number" name="quantity" min="1" value="1"
-                           class="form-control d-inline-block" style="width: 70px;">
+                <form th:action="@{/products/add-to-cart}" method="post"
+                      class="d-inline">
+                    <input type="hidden" name="id" th:value="${product.id}">
+                    <input type="hidden" name="name"
+                           th:value="${product.name}">
+                    <input type="hidden" name="price"
+                           th:value="${product.price}">
+                    <button type="submit" class="btn btn-success"
+                            onclick="return confirm('Are you sure you want to add this book to cart?')">
+                        Add to cart</button>
                 </form>
             </td>
             <td>
                 <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-success btn-sm">Edit</a>
                 <a th:href="@{/products/delete/{id}(id=${product.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
-            </td>
-            <td>
-                <form th:action="@{/cart/add}" method="post">
-                    <input type="hidden" th:value="${product.id}"
-                           name="productId"/><button type="submit" class="btn btn-warning btn-sm">Add to Cart</button>
-                    <input type="hidden" th:value="${product.quantity}"
-                           name="productId"/><button type="submit" class="btn btn-warning btn-sm">Add to Cart</button>
-                </form>
             </td>
         </tr>
         </tbody>
