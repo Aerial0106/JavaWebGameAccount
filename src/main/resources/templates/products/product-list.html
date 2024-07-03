@@ -20,7 +20,6 @@
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>
-            <th>Image</th>
             <th>Category Name</th>
             <th>Quantity</th>
             <th>Actions</th>
@@ -35,9 +34,6 @@
             <td>aaa</td>
             <td th:text="${product.category.name}"></td>
 
-            <td th:if="${product.img1 != null}">
-                <img th:src="@{${product.thumnail}}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
-            </td>
             <td>
                 <form th:action="@{/cart/add}" method="post">
                     <input type="number" name="quantity" min="1" value="1"

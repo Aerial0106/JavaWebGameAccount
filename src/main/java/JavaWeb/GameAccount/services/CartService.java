@@ -1,5 +1,6 @@
 package JavaWeb.GameAccount.services;
 
+import JavaWeb.GameAccount.model.CartItem;
 import JavaWeb.GameAccount.model.Order;
 import JavaWeb.GameAccount.model.OrderDetail;
 import JavaWeb.GameAccount.model.daos.Cart;
@@ -32,6 +33,8 @@ public class CartService {
     private final IOrderDetailRepository orderDetailRepository;
     private final IProductRepository productRepository;
 
+    private List<CartItem> cartItems = new ArrayList<>();
+
     public Cart getCart(@NotNull HttpSession session) {
         return Optional.ofNullable((Cart)
                         session.getAttribute(CART_SESSION_KEY))
@@ -41,7 +44,10 @@ public class CartService {
                     return cart;
                 });
     }
-
+    public void addToCart(long productId, int quantity) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalArgumentException("Product not found: " + productId));
+        cartItems.add(new CartItem(product, quantity));
+    }
     public void updateCart(@NotNull HttpSession session, Cart cart) {
         session.setAttribute(CART_SESSION_KEY, cart);
     }

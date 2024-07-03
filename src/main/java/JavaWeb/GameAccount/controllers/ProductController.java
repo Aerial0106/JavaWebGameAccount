@@ -67,7 +67,7 @@ public class ProductController {
             model.addAttribute("errors", errors);
             model.addAttribute("categories",
                     categoryService.getAllCategories());
-            return "product/add-product";
+            return "products/add-product";
         }
         productService.addProduct(product);
         return "redirect:/products";
@@ -90,13 +90,13 @@ public class ProductController {
     public String showEditForm(@NotNull Model model, @PathVariable long id) {
         Product product = productService.getProductById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid productId:" + id));
-        model.addAttribute("product", product);
+        model.addAttribute("products", product);
         model.addAttribute("categories", categoryService.getAllCategories());
         return "products/update-product";
     }
 
     @PostMapping("/edit")
-    public String editProduct(@Valid @ModelAttribute("product") Product product,
+    public String editProduct(@Valid @ModelAttribute("products") Product product,
                               @NotNull BindingResult bindingResult,
                               Model model) {
         if (bindingResult.hasErrors()) {
@@ -107,7 +107,7 @@ public class ProductController {
             model.addAttribute("errors", errors);
             model.addAttribute("categories",
                     categoryService.getAllCategories());
-            return "product/update-product";
+            return "products/update-product";
         }
         productService.updateProduct(product);
         return "redirect:/products";
@@ -130,5 +130,21 @@ public class ProductController {
     private void addCommonAttributes(Model model) {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("menus", menuService.findAllMenu());
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateProduct(@PathVariable Long id, @Valid Product product,
+                                BindingResult result) {
+        if (result.hasErrors()) {
+            product.setId((long) Math.toIntExact(id));
+            return "/products/update-product";
+        }
+        productService.updateProduct(product);
+        return "redirect:/products";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        productService.deleteProductById(id);
+        return "redirect:/products";
     }
 }

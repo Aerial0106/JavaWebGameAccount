@@ -46,6 +46,12 @@ public class CartController {
         return "cart/cart";
     }
 
+    @PostMapping("/add")
+    public String addToCart(@RequestParam int productId, @RequestParam int
+            quantity) {
+        cartService.addToCart(productId, quantity);
+        return "redirect:/cart";
+    }
     @GetMapping("/removeFromCart/{id}")
     public String removeFromCart(HttpSession session,
                                  @PathVariable Long id) {
