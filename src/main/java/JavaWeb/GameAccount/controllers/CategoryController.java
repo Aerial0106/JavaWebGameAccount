@@ -85,5 +85,14 @@ public class CategoryController {
                         });
         return "redirect:/categories";
     }
-
+    @PostMapping("/update/{id}")
+    public String updateCategory(@PathVariable("id") Long id, @Valid Category category, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            category.setId((long) Math.toIntExact(id));
+            return "/categories/update-category";
+        }
+        categoryService.updateCategory(category);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        return "redirect:/categories";
+    }
 }

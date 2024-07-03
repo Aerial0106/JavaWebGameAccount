@@ -86,4 +86,11 @@ public class CartService {
         });
         removeCart(session);
     }
+
+    public void removeFromCart(int productId) {
+        cartItems.removeIf(item -> item.getProduct().getId() == (productId));
+    }
+    public void clearCart() {
+        cartItems.clear();
+    }
 }
