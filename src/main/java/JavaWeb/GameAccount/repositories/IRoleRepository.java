@@ -1,6 +1,6 @@
 package JavaWeb.GameAccount.repositories;
 
-import JavaWeb.GameAccount.entities.Role;
+import JavaWeb.GameAccount.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
