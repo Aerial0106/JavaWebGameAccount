@@ -10,18 +10,18 @@
 </head>
 <body><section layout:fragment="content" class="container mt-3">
     <h1>Place Your Order</h1>
-    <form th:action="@{/order/submit}" th:object="${order}" method="post">
+    <form th:action="@{/order/checkout}" th:object="${order}" method="post">
         <div class="mb-3">
             <label for="fullname" class="form-label">Your Name:</label>
-            <input type="text" id="fullname" th:field="*{fullname}" th:value="${user.fullname}" class="form-control" required readonly>
+            <input type="text" id="fullname" th:field="*{fullname}" th:value="${user.getFullname()}" class="form-control" required readonly>
         </div>
         <div class="mb-3">
             <label for="phone" class="form-label">Your Phone:</label>
-            <input type="text" id="phone" th:field="*{phone}" th:value="${user.phone}" class="form-control" required readonly>
+            <input type="text" id="phone" th:field="*{phone}" th:value="${user.getPhone()}" class="form-control" required readonly>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Your Email:</label>
-            <input type="text" id="email" th:field="*{email}" th:value="${user.email}" class="form-control" required readonly>
+            <input type="text" id="email" th:field="*{email}" th:value="${user.getEmail()}" class="form-control" required readonly>
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Address:</label>

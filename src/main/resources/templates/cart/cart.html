@@ -9,18 +9,19 @@
 </head>
 <body>
 <section layout:fragment="content" class="container mt-3"><h1>Your Cart</h1>
-
     <table class="table" th:if="${not #lists.isEmpty(cart.cartItems)}">
         <thead class="table-light">
         <tr>
-            <th>Product Name</th>
-            <th>Quantity</th>
-            <th>Action</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="item : ${cart.cartItems}">
-            <td th:text="${item.product.name}"></td>
+            <td th:text="${item.getProductName()}"></td>
             <td>
                 <label>
                     <input type="number" min="1"
@@ -29,15 +30,23 @@
                            class="form-control quantity">
                 </label>
             </td>
+            <td th:text="${item.getPrice()}"></td>
+            <td th:text="${item.getPrice() * item.getQuantity()}"></td>
             <td>
-                <a th:href="@{/cart/remove/{productId}(productId=${item.product.id})}"
-                   class="btn btn-danger btn-sm">Remove</a>
+            <td>
+                <a class="btn btn-danger"
+                   th:href="@{/cart/removeFromCart/{id}(id=${item.getProductId()})}">
+                    Remove
+                </a>
             </td>
+            <div class="col-md-12">
+                <h3>Total: <span th:text="${totalPrice}"></span></h3>
+            </div>
         </tr>
         </tbody>
     </table>
     <div class="mt-3">
-        <a th:href="@{/cart/clear}" class="btn btn-secondary">Clear Cart</a>
+        <a th:href="@{/cart/clearCart}" class="btn btn-secondary">Clear Cart</a>
         |
         <a th:href="@{/order/checkout}" class="btn btn-primary mb-3">Check Out</a>
     </div>
@@ -54,6 +63,5 @@
     </div>
 </section>
 <script th:src="@{wwwroot/js/cart.js}"></script>
-
 </body>
 </html>

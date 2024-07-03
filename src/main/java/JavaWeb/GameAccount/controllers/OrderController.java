@@ -46,7 +46,7 @@ public String checkout(Model model) {
     model.addAttribute("order", new Order());
     return "/cart/checkout";
 }
-@PostMapping("/submit")
+@PostMapping("/checkout")
 public String submitOrder(@ModelAttribute("order") Order order, @RequestParam String note, @RequestParam String address) {
     Cart cart = cartService.getCart(session);
     if (cart.getCartItems().isEmpty()) {
